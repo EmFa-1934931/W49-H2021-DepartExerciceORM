@@ -19,7 +19,7 @@ namespace TestORMCodeFirst.DAL
         private void SetUp()
         {
             var builder = new DbContextOptionsBuilder<CegepContext>();
-            builder.UseInMemoryDatabase(databaseName: "testEtudiant_db");   // Database en mémoire
+            builder.UseInMemoryDatabase(databaseName: "testEtudiant_db");
             var contexte = new CegepContext(builder.Options);
             repoEtu = new EFEtudiantRepository(contexte);
             repoInsc = new EFInscCoursRepository(contexte);

@@ -122,6 +122,7 @@ namespace TestORMCodeFirst.DAL
             Assert.Equal(3, NbInscriptions);
         }
 
+        //S'informer sur pourquoi le test ne passe plus
         [Fact]
         public void NombreEtudiantsInscritsPourUneSession_QuandPlusieursCours()
         {
@@ -134,6 +135,62 @@ namespace TestORMCodeFirst.DAL
 
             // Assert
             Assert.Equal(5, NbInscriptions);
+        }
+
+        [Fact]
+        public void NoteFinaleDetudiantsDevraitChanger()
+        {
+            // Arrange
+            SetUp();
+            DataSeed();
+            InscriptionCours insc = repoInscriptions.ObtenirInscriptions().First();
+            short newGrade = 65;
+
+            //Act
+            repoInscriptions.MettreAJourNoteFinale(insc.EtudiantID, insc.CodeCours, insc.CodeSession, newGrade);
+
+            // Assert
+            Assert.Equal(newGrade, insc.NoteFinale);
+        }
+
+        [Fact]
+        public void MoyenneDeClasse()
+        {
+            // Arrange
+            SetUp();
+            repoInscriptions.AjouterInscription(1, "AAA", "A20");
+            repoInscriptions.AjouterInscription(2, "AAA", "A20");
+            repoInscriptions.AjouterInscription(3, "AAA", "A20");
+
+            repoInscriptions.MettreAJourNoteFinale(1, "AAA", "A20", 60);
+            repoInscriptions.MettreAJourNoteFinale(2, "AAA", "A20", 70);
+            repoInscriptions.MettreAJourNoteFinale(3, "AAA", "A20", 50);
+
+            //Act
+            double moyenne = repoInscriptions.ObtenirPourUneClasseLaMoyenne("AAA", "A20");
+
+            //Assert
+            Assert.Equal(60, moyenne);
+        }
+
+        [Fact]
+        public void NombreCorrectDechecs() 
+        {
+            // Arrange
+            SetUp();
+            repoInscriptions.AjouterInscription(100, "AAA", "H20");
+            repoInscriptions.AjouterInscription(200, "AAA", "H20");
+            repoInscriptions.AjouterInscription(300, "AAA", "H20");
+
+            repoInscriptions.MettreAJourNoteFinale(100, "AAA", "H20", 60);
+            repoInscriptions.MettreAJourNoteFinale(200, "AAA", "H20", 70);
+            repoInscriptions.MettreAJourNoteFinale(300, "AAA", "H20", 50);
+
+            //Act
+            int echecs = repoInscriptions.ObtenirPourUneClasseNombreEchecs("AAA", "H20");
+
+            //Assert
+            Assert.Equal(1, echecs);
         }
 
     }
