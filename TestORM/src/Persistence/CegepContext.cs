@@ -43,6 +43,8 @@ namespace TestORMCodeFirst.Persistence
                         .WithMany(etud => etud.Cours)
                         .OnDelete(DeleteBehavior.Restrict);
 
+            //Cours
+            //Inscrire les dépendances
        }
 
     }
