@@ -15,7 +15,6 @@ namespace TestORMCodeFirst.Entities
         [Required]
         public short EtudiantID { get; set; }
 
-        [ForeignKey("CodeCours")]
         [Required]
         [Column(TypeName = "varchar(10)")]
         public string CodeCours { get; set; }
@@ -30,7 +29,8 @@ namespace TestORMCodeFirst.Entities
         [ForeignKey("EtudiantID")]
         public virtual Etudiant Etudiant { get; set; }
 
-        public virtual ICollection<Cours> Cours { get; set; }
+        [ForeignKey("CodeCours")]
+        public virtual Cours Cours { get; set; }
 
     }
 }

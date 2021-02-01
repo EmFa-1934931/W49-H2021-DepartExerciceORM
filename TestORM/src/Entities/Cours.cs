@@ -21,6 +21,6 @@ namespace TestORMCodeFirst.Entities
         public string NomCours { get; set; }
 
         //Propriétés de navigation
-        public virtual ICollection<InscriptionCours> Inscriprions { get; set; }
+        public virtual ICollection<InscriptionCours> Inscriptions { get; set; }
     }
 }

@@ -84,22 +84,22 @@ namespace TestORMCodeFirst.Presentation
                 //Afficher liste des cours
                 Console.WriteLine("");
                 Console.WriteLine("Afficher liste des cours");
-                /*
+                
                 Cours coursBD = new Cours() { NomCours = "BD", CodeCours = "420-V40" };
                 Cours coursWeb = new Cours() { NomCours = "Web", CodeCours = "420-V10" };
                 
                 InscriptionCours cours = new InscriptionCours() { Etudiant = jean, Cours = coursBD, CodeSession = "H2021" };
                 InscriptionCours cours2 = new InscriptionCours() { Etudiant = jean, Cours = coursWeb, CodeSession = "H2021" };
-                */
+                
                 /**************************************************
                 //Ajouter la méthode AjouterCours dans le bon repository
                 ***************************************************/
-                //inscCoursRepo.AjouterCours(cours);
-                //inscCoursRepo.AjouterCours(cours2);
-                /*
+                inscCoursRepo.AjouterCours(cours);
+                inscCoursRepo.AjouterCours(cours2);
+                
                 Console.WriteLine("Liste des cours pour l'étudiant " + jean.Nom + ", " + jean.Prenom);
                 etudiantRepo.ObtenirListeCours(jean.EtudiantID).ForEach(c => Console.WriteLine("Nom cours: " + c.Cours.NomCours + ", Session: " + c.CodeSession));
-                */
+                
                 
                 Console.ReadLine();
 
@@ -109,12 +109,12 @@ namespace TestORMCodeFirst.Presentation
 
                 Console.WriteLine("----------------");
                 etudiantRepo.ClasserEtudiantsDDN().ForEach(e => Console.WriteLine(e));
-                /*
+                
               foreach (Etudiant e in etudiantRepo.ClasserEtudiantsDDN())
                {
                    Console.WriteLine(e);
                }
-                */
+                
                 Console.ReadKey();
                 
             }
